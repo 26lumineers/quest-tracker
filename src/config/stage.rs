@@ -1,6 +1,6 @@
-use std::fmt::{self, write};
 use anyhow::Result;
-#[derive(Debug,Clone,Default,PartialEq)]
+use std::fmt::{self};
+#[derive(Debug, Clone, Default, PartialEq)]
 pub enum Stage {
     Local,
     #[default]
@@ -10,17 +10,17 @@ pub enum Stage {
 
 impl fmt::Display for Stage {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let stage: &str = match self  {
+        let stage: &str = match self {
             Stage::Local => "Local",
             Stage::Development => "Development",
             Stage::Production => "Production",
         };
-        write!(f,"{}",stage)
+        write!(f, "{}", stage)
     }
 }
 
 impl Stage {
-    pub fn try_from(stage :&str) -> Result<Self>{
+    pub fn try_from(stage: &str) -> Result<Self> {
         match stage {
             "Local" => Ok(Stage::Local),
             "Development" => Ok(Stage::Development),
@@ -29,3 +29,4 @@ impl Stage {
         }
     }
 }
+
